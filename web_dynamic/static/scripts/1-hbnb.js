@@ -1,3 +1,4 @@
+const $ = window.$;
 $(document).ready(() => {
   let amenityDict = {};
   $('input:checkbox').change(() => {

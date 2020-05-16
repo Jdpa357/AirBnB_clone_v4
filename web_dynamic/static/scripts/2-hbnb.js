@@ -1,24 +1,29 @@
+const $ = window.$;
 $(document).ready(() => {
   let amenityDict = {};
-  $('input').change(() => {
-    if ($('input').prop('checked')) {
-      $("li > input:checkbox:checked").map(function(){
-	amenityDict[$(this).attr('data-id')] = $(this).attr('data-name');
+  $('input:checkbox').change(() => {
+    let amenityString = '';
+    if ($(this).is(':checked')) {
+      $('li > input:checkbox:checked').map(function () {
+        amenityDict[$(this).attr('data-id')] = ' ' + $(this).attr('data-name');
       }).get();
-      $('div.amenities > h4').text(Object.values(amenityDict));
+      Object.values(amenityDict).forEach((amenity) => {
+        amenityString += amenity;
+        amenityString += ' ';
+      });
+      $('div.amenities > h4').text(amenityString);
     } else {
       amenityDict = {};
-      $("li > input:checkbox:checked").map(function(){
-	amenityDict[$(this).attr('data-id')] = $(this).attr('data-name');
+      $('li > input:checkbox:checked').map(function () {
+        amenityDict[$(this).attr('data-id')] = $(this).attr('data-name');
       }).get();
-      $('div.amenities > h4').text(Object.values(amenityDict));
+      Object.values(amenityDict).forEach((amenity, i) => {
+        amenityString += amenity;
+        if (i !== Object.values(amenityDict).length - 1) {
+          amenityString += ', ';
+        }
+      });
+      $('div.amenities > h4').text(amenityString);
     }
   });
-  $(function () {
-    $.get('http://0.0.0.0:5001/api/v1/status/', function(data)
-	    {
-		alert('hi')
-		//$('DIV#api_status').addClass('available');
-	    });
-	}
-  });
+});
