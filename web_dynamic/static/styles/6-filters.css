@@ -24,6 +24,7 @@
 
 .container .filters .amenities {
 	width: 25%;
+	
 }
 
 .container .filters button {
@@ -55,9 +56,12 @@
 }
 
 .container .filters h4 {
-	font-weight: 400;
-	font-size: 14px;
-	margin: 7px 0 3px 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 7px 0 3px 40px;
 }
 
 /**
@@ -91,6 +95,10 @@
 
 .container .filters .popover li {
 	margin: 5px 0 5px 0;
+}
+
+.container .filters .popover li input {
+	margin-right: 10px;
 }
 
 @media screen and (max-width: 600px) {
